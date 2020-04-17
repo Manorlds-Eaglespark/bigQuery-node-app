@@ -11,7 +11,7 @@ Middleware for an some app's analytics
 - `npm install`
 
 4. Add a .env file and add the required variable with path to the credentials
-- `GOOGLE_APPLICATION_CREDENTIALS='C:\- some path-\yourKey.json'`
+- `GOOGLE_APPLICATION_CREDENTIALS='C:\ - some path - \yourKey.json'`
 
 5. Start up the server
 - `node app.js`
