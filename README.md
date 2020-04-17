@@ -1,5 +1,5 @@
 # bigQuery-node-app
-Middle for an some app's analytics
+Middleware for an some app's analytics
 
 ### Getting started
 1. Clone this [repository](https://github.com/Manorlds-Eaglespark/bigQuery-node-app.git)
@@ -10,5 +10,8 @@ Middle for an some app's analytics
 3. Use your package manager to install dependencies
 - `npm install`
 
-4. Start up the server
+4. Add a .env file and add the required variable with path to the credentials
+- `GOOGLE_APPLICATION_CREDENTIALS='C:\- some path-\yourKey.json'`
+
+5. Start up the server
 - `node app.js`
