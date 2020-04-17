@@ -1,25 +1,25 @@
+require('dotenv').config()
 const express = require('express');
-// Import the Google Cloud client library using default credentials
 const {BigQuery} = require('@google-cloud/bigquery');
 const bigquery = new BigQuery();
-require('dotenv').config()
-
 
 const app = express()
 const port = 3000
 
+let data_needed = null;
+
 app.get('/', (req, res) => {
-    runQuery();
-    res.send("Hello");
-
-
+    runQuery()
+    .then(data => {
+      res.setHeader("Content-Type", "application/json");
+      res.send(data);
+    })
+    .catch(err => console.log(err))
 });
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
 
-
 const runQuery = async function query() {
-    console.log("Am here")
   // Queries the U.S. given names dataset for the state of Texas.
 
   const query = `SELECT * FROM \`new-vision-app.analytics_228211956.events_*\` LIMIT 1000`;
@@ -34,11 +34,7 @@ const runQuery = async function query() {
   // Run the query as a job
   const [job] = await bigquery.createQueryJob(options);
   console.log(`Job ${job.id} started.`);
-
-  // Wait for the query to finish
   const [rows] = await job.getQueryResults();
 
-  // Print the results
-  console.log('Rows:');
-  rows.forEach(row => console.log(row));
+  return rows
 }
